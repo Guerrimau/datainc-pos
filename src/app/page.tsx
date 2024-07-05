@@ -1,8 +1,27 @@
 "use client";
 
-import { Header, Sidebar } from "@/components";
-import { Box } from "@mui/joy";
+import Image from "next/image";
 import React from "react";
+
+import {
+  AspectRatio,
+   Box,
+   Card,
+   CardContent,
+   FormControl,
+   Grid,
+   IconButton,
+   Input,
+   Stack,
+   Tab,
+   TabList,
+   Tabs,
+   Typography,
+} from "@mui/joy";
+import AddIcon from '@mui/icons-material/Add';
+import SearchIcon from '@mui/icons-material/Search';
+import { Header, Sidebar } from "@/components";
+import coffeImg from "@/assets/images/coffe.jpg";
 
 export default function Home() {
    return (
@@ -10,9 +29,10 @@ export default function Home() {
          <Box sx={{ display: "flex", minHeight: "100dvh" }}>
             <Header />
             <Sidebar />
-            <Box
+            <Stack
                component="main"
                className="MainContent"
+               spacing={2}
                sx={{
                   px: { xs: 2, md: 6 },
                   pt: {
@@ -29,8 +49,47 @@ export default function Home() {
                   gap: 1,
                }}
             >
-               
-            </Box>
+               <Typography level="h1">Orden</Typography>
+               <FormControl>
+                  <Input startDecorator={<SearchIcon />} placeholder="Buscar comida, bebidas, etc..." />
+               </FormControl>
+               <Tabs size="md">
+                  <TabList>
+                     <Tab>Bebidas</Tab>
+                     <Tab>Panaderia</Tab>
+                     <Tab>Otros</Tab>
+                  </TabList>
+               </Tabs>
+               <Grid container spacing={2}>
+                  {Array.from({ length: 10 }).map((_, index) => (
+                     <Grid xs={6} md={4} xl={2}>
+                        <Card>
+                           <div>
+                              <Typography level="title-lg">
+                                 Americano
+                              </Typography>
+                              <AspectRatio minHeight="120px" maxHeight="200px">
+                                <Image src={coffeImg} alt="product-image" />
+                              </AspectRatio>
+                           </div>
+                           <CardContent orientation="horizontal" sx={{ justifyContent: "space-between"}}>
+                              <div>
+                                 <Typography level="body-xs">
+                                    Precio total:
+                                 </Typography>
+                                 <Typography fontSize="lg" fontWeight="lg">
+                                    $45.00
+                                 </Typography>
+                              </div>
+                              <IconButton size="lg" variant="soft">
+                                <AddIcon />
+                              </IconButton>
+                           </CardContent>
+                        </Card>
+                     </Grid>
+                  ))}
+               </Grid>
+            </Stack>
          </Box>
       </React.Fragment>
    );
