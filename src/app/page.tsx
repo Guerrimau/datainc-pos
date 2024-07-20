@@ -52,7 +52,7 @@ export default function Home() {
 
           <Grid container spacing={2} overflow="auto">
             {Array.from({ length: 10 }).map((_, index) => (
-              <Grid xs={6} lg={4} xl={3}>
+              <Grid xs={6} lg={4} xl={3} key={index}>
                 <Card>
                   <div>
                     <Typography level="title-lg">Americano</Typography>
