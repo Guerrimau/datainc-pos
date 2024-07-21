@@ -6,24 +6,30 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:migrate": "npx drizzle-kit push",
+    "db:studio": "npx drizzle-kit studio --port 5555 --verbose"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.5",
-    "@fontsource/inter": "^5.0.18",
-    "@mui/icons-material": "^5.15.20",
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/inter": "^5.0.19",
+    "@mui/icons-material": "^5.16.4",
     "@mui/joy": "^5.0.0-beta.36",
+    "@next/env": "^14.2.5",
+    "@vercel/postgres": "^0.9.0",
+    "drizzle-orm": "^0.32.0",
     "next": "14.2.4",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
+    "@types/node": "^20.14.11",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "drizzle-kit": "^0.23.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "14.2.4",
-    "typescript": "^5"
+    "typescript": "^5.5.3"
   }
 }

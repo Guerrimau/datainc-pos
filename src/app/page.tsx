@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 
@@ -26,8 +24,22 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import SearchIcon from "@mui/icons-material/Search";
 import { DashboardLayout } from "@/components";
 import coffeImg from "@/assets/images/coffe.jpg";
+import {db} from "@/db";
 
-export default function Home() {
+export default async function Home() {
+
+  const products = await db.query.products.findMany({
+    with: {
+      category: {
+        columns: {
+          type: true
+        }
+      }
+    }
+  });
+
+  console.log(products)
+
   return (
     <DashboardLayout>
       <Stack direction="row" flex={1} height="100%">
