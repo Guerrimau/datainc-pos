@@ -24,22 +24,10 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import SearchIcon from "@mui/icons-material/Search";
 import { DashboardLayout } from "@/components";
 import coffeImg from "@/assets/images/coffe.jpg";
-import {db} from "@/db";
+import { getProducts } from "./actions";
 
 export default async function Home() {
-
-  const products = await db.query.products.findMany({
-    with: {
-      category: {
-        columns: {
-          type: true
-        }
-      }
-    }
-  });
-
-  console.log(products)
-
+  const products = await getProducts();
   return (
     <DashboardLayout>
       <Stack direction="row" flex={1} height="100%">
@@ -63,11 +51,11 @@ export default async function Home() {
           </Tabs>
 
           <Grid container spacing={2} overflow="auto">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <Grid xs={6} lg={4} xl={3} key={index}>
+            {products.map((product, index) => (
+              <Grid xs={6} lg={4} xl={3} key={product.id}>
                 <Card>
                   <div>
-                    <Typography level="title-lg">Americano</Typography>
+                    <Typography level="title-lg">{product.name}</Typography>
                     <AspectRatio minHeight="120px" maxHeight="200px">
                       <Image src={coffeImg} alt="product-image" />
                     </AspectRatio>
@@ -79,7 +67,7 @@ export default async function Home() {
                     <div>
                       <Typography level="body-xs">Precio total:</Typography>
                       <Typography fontSize="lg" fontWeight="lg">
-                        $45.00
+                        ${product.initial_price}
                       </Typography>
                     </div>
                     <IconButton size="lg" variant="soft">
@@ -142,7 +130,7 @@ export default async function Home() {
               <Typography>$248.00</Typography>
             </Grid>
           </Grid>
-          
+
           <Divider sx={{ mt: "auto !important" }} />
 
           <Textarea placeholder="Agregar nota..." minRows={3} />

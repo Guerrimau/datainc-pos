@@ -42,7 +42,7 @@ export const orderStatusEnum = pgEnum("status", [
 
 export const orders = pgTable("orders", {
   id: serial("id").primaryKey(),
-  client_id: integer("client_id").references(() => users.id),
+  client_id: integer("client_id"),
   delivery_date: date("delivery_date").notNull(),
   delivery_address: varchar("delivery_address").notNull(),
   total_price: integer("total_price").notNull(),
