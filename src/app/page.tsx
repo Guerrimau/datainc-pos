@@ -31,7 +31,7 @@ export default async function Home() {
   return (
     <DashboardLayout>
       <Stack direction="row" flex={1} height="100%">
-        <Stack spacing={2} p={4} height="100%">
+        <Stack spacing={2} p={4} height="100%" flex={1}>
           <Typography level="h1">Orden</Typography>
 
           <FormControl>
@@ -82,7 +82,7 @@ export default async function Home() {
         <Sheet
           component={Stack}
           variant="outlined"
-          width={1000}
+          width={400}
           spacing={2}
           p={2}
         >
