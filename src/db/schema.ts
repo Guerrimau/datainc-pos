@@ -45,7 +45,7 @@ export const orders = pgTable("orders", {
   client_id: integer("client_id"),
   delivery_date: date("delivery_date").notNull(),
   delivery_address: varchar("delivery_address").notNull(),
-  total_price: integer("total_price").notNull(),
+  total_price: integer("total_price").default(0).notNull(),
   status: orderStatusEnum("status").notNull(),
   created_at: varchar("created_at").notNull(),
   updated_at: varchar("updated_at").notNull(),
@@ -72,7 +72,7 @@ export const orderItems = pgTable("order_items", {
   id: serial("id").primaryKey(),
   order_id: integer("order_id"),
   product_id: integer("product_id"),
-  price: integer("price").notNull(),
+  price: integer("price").notNull().default(0),
   unit: orderItemUnitEnum("unit").notNull(),
 });
 
